@@ -52,38 +52,37 @@ html,body{
 }
 .header{
   background:linear-gradient(135deg,#111827 0%,#1f2937 100%);
-  border-radius:8px;
-  padding:0 20px;
   display:flex;
   justify-content:space-between;
   align-items:center;
   width:100%;
   height:100%;
+  padding:0 2vw;
 }
-.header-left{display:flex;align-items:center;gap:12px}
+.header-left{display:flex;align-items:center;gap:1.5vw}
 .icon{
-  width:36px;height:36px;
+  width:5vh;
+  height:5vh;
   background:rgba(239,68,68,0.15);
-  border-radius:8px;
+  border-radius:1vh;
   display:flex;align-items:center;justify-content:center;
-  font-size:18px;
+  font-size:3vh;
 }
 .header-title{
-  font-size:20px;
+  font-size:4vh;
   font-weight:700;
   color:#fff;
 }
 .header-period{
-  font-size:14px;
+  font-size:2.5vh;
   color:#9ca3af;
-  margin-top:2px;
 }
 .badge{
   background:#ef4444;
   color:#fff;
-  padding:6px 14px;
-  border-radius:16px;
-  font-size:12px;
+  padding:1vh 2vw;
+  border-radius:2vh;
+  font-size:2vh;
   font-weight:600;
 }
 </style></head>
@@ -124,32 +123,32 @@ html,body{
 }
 .card{
   background:#fff;
-  border-radius:8px;
   width:100%;
   height:100%;
   display:flex;
   flex-direction:column;
   border:1px solid #e5e7eb;
   border-top:3px solid #14b8a6;
+  border-radius:8px;
 }
 .card-header{
-  padding:16px 20px 0 20px;
+  padding:2vh 3vw 0 3vw;
   display:flex;
   justify-content:space-between;
   align-items:center;
 }
 .card-title{
-  font-size:16px;
+  font-size:3.5vh;
   font-weight:500;
   color:#111827;
 }
 .status-badge{
   background:${statusColor}20;
   color:${statusColor};
-  font-size:12px;
+  font-size:2.5vh;
   font-weight:600;
-  padding:4px 10px;
-  border-radius:12px;
+  padding:0.8vh 2vw;
+  border-radius:2vh;
 }
 .card-body{
   flex:1;
@@ -158,16 +157,16 @@ html,body{
   align-items:center;
 }
 .value{
-  font-size:80px;
+  font-size:20vh;
   font-weight:600;
   color:#1e3a5f;
   line-height:1;
 }
 .card-footer{
-  padding:0 20px 16px 20px;
+  padding:0 3vw 2vh 3vw;
 }
 .target{
-  font-size:14px;
+  font-size:2.5vh;
   color:${statusColor};
 }
 </style></head>
@@ -210,32 +209,32 @@ html,body{
 }
 .card{
   background:#fff;
-  border-radius:8px;
   width:100%;
   height:100%;
   display:flex;
   flex-direction:column;
   border:1px solid #e5e7eb;
   border-top:3px solid #14b8a6;
+  border-radius:8px;
 }
 .card-header{
-  padding:16px 20px 0 20px;
+  padding:2vh 3vw 0 3vw;
   display:flex;
   justify-content:space-between;
   align-items:center;
 }
 .card-title{
-  font-size:16px;
+  font-size:3.5vh;
   font-weight:500;
   color:#111827;
 }
 .status-badge{
   background:${statusColor}20;
   color:${statusColor};
-  font-size:12px;
+  font-size:2.5vh;
   font-weight:600;
-  padding:4px 10px;
-  border-radius:12px;
+  padding:0.8vh 2vw;
+  border-radius:2vh;
 }
 .card-body{
   flex:1;
@@ -244,16 +243,16 @@ html,body{
   align-items:center;
 }
 .value{
-  font-size:80px;
+  font-size:20vh;
   font-weight:600;
   color:#1e3a5f;
   line-height:1;
 }
 .card-footer{
-  padding:0 20px 16px 20px;
+  padding:0 3vw 2vh 3vw;
 }
 .target{
-  font-size:14px;
+  font-size:2.5vh;
   color:${statusColor};
 }
 </style></head>
@@ -339,15 +338,15 @@ html,body{
 .container{
   width:100%;
   height:100%;
-  padding:10px;
+  padding:1.5vh 1vw;
   display:flex;
   flex-direction:column;
-  gap:10px;
+  gap:1.5vh;
 }
 .panels{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:10px;
+  gap:1vw;
   flex:1;
   min-height:0;
 }
@@ -356,18 +355,18 @@ html,body{
   border-radius:8px;
   border:1px solid #e5e7eb;
   border-top:3px solid #14b8a6;
-  padding:16px 20px;
+  padding:2vh 2vw;
   display:flex;
   flex-direction:column;
 }
 .panel-title{
-  font-size:16px;
+  font-size:3vh;
   font-weight:500;
   color:#111827;
-  margin-bottom:16px;
+  margin-bottom:2vh;
   display:flex;
   align-items:center;
-  gap:8px;
+  gap:1vw;
 }
 .panel-content{
   flex:1;
@@ -378,68 +377,68 @@ html,body{
 .row{
   display:flex;
   align-items:center;
-  padding:10px 0;
+  padding:1.5vh 0;
 }
 .label{
-  width:140px;
-  font-size:15px;
+  width:14vw;
+  font-size:2.5vh;
   color:#6b7280;
 }
 .bar-wrap{
   flex:1;
-  height:10px;
+  height:1.8vh;
   background:#f3f4f6;
-  border-radius:5px;
-  margin:0 16px;
+  border-radius:1vh;
+  margin:0 1.5vw;
   overflow:hidden;
 }
 .bar{
   height:100%;
   background:#d1d5db;
-  border-radius:5px;
+  border-radius:1vh;
 }
 .bar.blue{
   background:linear-gradient(90deg,#3b82f6,#60a5fa);
 }
 .rate{
-  font-size:18px;
+  font-size:3.5vh;
   font-weight:700;
   color:#111827;
-  min-width:65px;
+  min-width:7vw;
   text-align:right;
 }
 .count{
-  font-size:16px;
+  font-size:3vh;
   font-weight:600;
   color:#111827;
-  min-width:30px;
+  min-width:4vw;
   text-align:right;
 }
 .recs{
   background:#fffbeb;
   border-radius:8px;
-  padding:14px 18px;
+  padding:2vh 2vw;
   border-left:4px solid #f59e0b;
 }
 .recs-title{
-  font-size:13px;
+  font-size:2.5vh;
   font-weight:700;
   color:#92400e;
   text-transform:uppercase;
-  margin-bottom:10px;
+  margin-bottom:1.5vh;
 }
 .rec-item{
   display:flex;
-  gap:10px;
-  padding:6px 0;
+  gap:1vw;
+  padding:1vh 0;
 }
 .rec-arrow{
   color:#ef4444;
   font-weight:bold;
-  font-size:15px;
+  font-size:2.5vh;
 }
 .rec-text{
-  font-size:15px;
+  font-size:2.5vh;
   color:#78716c;
   line-height:1.4;
 }
