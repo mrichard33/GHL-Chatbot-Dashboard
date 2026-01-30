@@ -133,7 +133,7 @@ html,body{
   border:1px solid #e5e7eb;
   border-top:3px solid #14b8a6;
   border-radius:8px;
-  padding:12px 16px;
+  padding:3% 4%;
 }
 .card-header{
   display:flex;
@@ -141,17 +141,17 @@ html,body{
   align-items:center;
 }
 .card-title{
-  font-size:14px;
+  font-size:4.5vw;
   font-weight:500;
   color:#111827;
 }
 .status-badge{
   background:${statusColor}20;
   color:${statusColor};
-  font-size:10px;
+  font-size:3vw;
   font-weight:600;
-  padding:3px 8px;
-  border-radius:10px;
+  padding:1% 3%;
+  border-radius:2vw;
 }
 .card-body{
   flex:1;
@@ -160,16 +160,16 @@ html,body{
   align-items:center;
 }
 .value{
-  font-size:72px;
+  font-size:18vw;
   font-weight:600;
   color:#1e3a5f;
   line-height:1;
 }
 .card-footer{
-  padding-top:8px;
+  padding-top:2%;
 }
 .target{
-  font-size:12px;
+  font-size:3.5vw;
   color:${statusColor};
 }
 </style></head>
@@ -219,7 +219,7 @@ html,body{
   border:1px solid #e5e7eb;
   border-top:3px solid #14b8a6;
   border-radius:8px;
-  padding:12px 16px;
+  padding:3% 4%;
 }
 .card-header{
   display:flex;
@@ -227,17 +227,17 @@ html,body{
   align-items:center;
 }
 .card-title{
-  font-size:14px;
+  font-size:4.5vw;
   font-weight:500;
   color:#111827;
 }
 .status-badge{
   background:${statusColor}20;
   color:${statusColor};
-  font-size:10px;
+  font-size:3vw;
   font-weight:600;
-  padding:3px 8px;
-  border-radius:10px;
+  padding:1% 3%;
+  border-radius:2vw;
 }
 .card-body{
   flex:1;
@@ -246,16 +246,16 @@ html,body{
   align-items:center;
 }
 .value{
-  font-size:72px;
+  font-size:18vw;
   font-weight:600;
   color:#1e3a5f;
   line-height:1;
 }
 .card-footer{
-  padding-top:8px;
+  padding-top:2%;
 }
 .target{
-  font-size:12px;
+  font-size:3.5vw;
   color:${statusColor};
 }
 </style></head>
@@ -476,6 +476,7 @@ app.get('/health', (req, res) => res.json({ status: 'ok' }));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, '0.0.0.0', () => console.log(`Running on ${PORT}`));
+
 
 
 
