@@ -69,13 +69,13 @@ html,body{
   font-size:30vh;
 }
 .header-title{
-  font-size:20vh;
+  font-size:10vh;
   font-weight:700;
   color:#fff;
   line-height:1;
 }
 .header-period{
-  font-size:20vh;
+  font-size:10vh;
   color:#9ca3af;
   line-height:1.2;
 }
@@ -476,4 +476,5 @@ app.get('/health', (req, res) => res.json({ status: 'ok' }));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, '0.0.0.0', () => console.log(`Running on ${PORT}`));
+
 
