@@ -57,33 +57,36 @@ html,body{
   align-items:center;
   width:100%;
   height:100%;
-  padding:0 2vw;
+  padding:0 20px;
 }
-.header-left{display:flex;align-items:center;gap:1.5vw}
+.header-left{display:flex;align-items:center;gap:12px}
 .icon{
-  width:5vh;
-  height:5vh;
+  height:60%;
+  aspect-ratio:1;
   background:rgba(239,68,68,0.15);
-  border-radius:1vh;
+  border-radius:8px;
   display:flex;align-items:center;justify-content:center;
-  font-size:3vh;
+  font-size:30vh;
 }
 .header-title{
-  font-size:4vh;
+  font-size:35vh;
   font-weight:700;
   color:#fff;
+  line-height:1;
 }
 .header-period{
-  font-size:2.5vh;
+  font-size:20vh;
   color:#9ca3af;
+  line-height:1.2;
 }
 .badge{
   background:#ef4444;
   color:#fff;
-  padding:1vh 2vw;
-  border-radius:2vh;
-  font-size:2vh;
+  padding:8vh 15px;
+  border-radius:25vh;
+  font-size:18vh;
   font-weight:600;
+  white-space:nowrap;
 }
 </style></head>
 <body>
@@ -130,25 +133,25 @@ html,body{
   border:1px solid #e5e7eb;
   border-top:3px solid #14b8a6;
   border-radius:8px;
+  padding:12px 16px;
 }
 .card-header{
-  padding:2vh 3vw 0 3vw;
   display:flex;
   justify-content:space-between;
   align-items:center;
 }
 .card-title{
-  font-size:3.5vh;
+  font-size:14px;
   font-weight:500;
   color:#111827;
 }
 .status-badge{
   background:${statusColor}20;
   color:${statusColor};
-  font-size:2.5vh;
+  font-size:10px;
   font-weight:600;
-  padding:0.8vh 2vw;
-  border-radius:2vh;
+  padding:3px 8px;
+  border-radius:10px;
 }
 .card-body{
   flex:1;
@@ -157,16 +160,16 @@ html,body{
   align-items:center;
 }
 .value{
-  font-size:20vh;
+  font-size:72px;
   font-weight:600;
   color:#1e3a5f;
   line-height:1;
 }
 .card-footer{
-  padding:0 3vw 2vh 3vw;
+  padding-top:8px;
 }
 .target{
-  font-size:2.5vh;
+  font-size:12px;
   color:${statusColor};
 }
 </style></head>
@@ -216,25 +219,25 @@ html,body{
   border:1px solid #e5e7eb;
   border-top:3px solid #14b8a6;
   border-radius:8px;
+  padding:12px 16px;
 }
 .card-header{
-  padding:2vh 3vw 0 3vw;
   display:flex;
   justify-content:space-between;
   align-items:center;
 }
 .card-title{
-  font-size:3.5vh;
+  font-size:14px;
   font-weight:500;
   color:#111827;
 }
 .status-badge{
   background:${statusColor}20;
   color:${statusColor};
-  font-size:2.5vh;
+  font-size:10px;
   font-weight:600;
-  padding:0.8vh 2vw;
-  border-radius:2vh;
+  padding:3px 8px;
+  border-radius:10px;
 }
 .card-body{
   flex:1;
@@ -243,16 +246,16 @@ html,body{
   align-items:center;
 }
 .value{
-  font-size:20vh;
+  font-size:72px;
   font-weight:600;
   color:#1e3a5f;
   line-height:1;
 }
 .card-footer{
-  padding:0 3vw 2vh 3vw;
+  padding-top:8px;
 }
 .target{
-  font-size:2.5vh;
+  font-size:12px;
   color:${statusColor};
 }
 </style></head>
@@ -338,15 +341,15 @@ html,body{
 .container{
   width:100%;
   height:100%;
-  padding:1.5vh 1vw;
+  padding:10px;
   display:flex;
   flex-direction:column;
-  gap:1.5vh;
+  gap:10px;
 }
 .panels{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:1vw;
+  gap:10px;
   flex:1;
   min-height:0;
 }
@@ -355,18 +358,15 @@ html,body{
   border-radius:8px;
   border:1px solid #e5e7eb;
   border-top:3px solid #14b8a6;
-  padding:2vh 2vw;
+  padding:16px 20px;
   display:flex;
   flex-direction:column;
 }
 .panel-title{
-  font-size:3vh;
-  font-weight:500;
+  font-size:16px;
+  font-weight:600;
   color:#111827;
-  margin-bottom:2vh;
-  display:flex;
-  align-items:center;
-  gap:1vw;
+  margin-bottom:16px;
 }
 .panel-content{
   flex:1;
@@ -377,70 +377,70 @@ html,body{
 .row{
   display:flex;
   align-items:center;
-  padding:1.5vh 0;
+  padding:10px 0;
 }
 .label{
-  width:14vw;
-  font-size:2.5vh;
+  width:150px;
+  font-size:15px;
   color:#6b7280;
 }
 .bar-wrap{
   flex:1;
-  height:1.8vh;
+  height:10px;
   background:#f3f4f6;
-  border-radius:1vh;
-  margin:0 1.5vw;
+  border-radius:5px;
+  margin:0 16px;
   overflow:hidden;
 }
 .bar{
   height:100%;
   background:#d1d5db;
-  border-radius:1vh;
+  border-radius:5px;
 }
 .bar.blue{
   background:linear-gradient(90deg,#3b82f6,#60a5fa);
 }
 .rate{
-  font-size:3.5vh;
+  font-size:20px;
   font-weight:700;
   color:#111827;
-  min-width:7vw;
+  min-width:70px;
   text-align:right;
 }
 .count{
-  font-size:3vh;
+  font-size:18px;
   font-weight:600;
   color:#111827;
-  min-width:4vw;
+  min-width:35px;
   text-align:right;
 }
 .recs{
   background:#fffbeb;
   border-radius:8px;
-  padding:2vh 2vw;
+  padding:14px 20px;
   border-left:4px solid #f59e0b;
 }
 .recs-title{
-  font-size:2.5vh;
+  font-size:14px;
   font-weight:700;
   color:#92400e;
   text-transform:uppercase;
-  margin-bottom:1.5vh;
+  margin-bottom:12px;
 }
 .rec-item{
   display:flex;
-  gap:1vw;
-  padding:1vh 0;
+  gap:10px;
+  padding:6px 0;
 }
 .rec-arrow{
   color:#ef4444;
   font-weight:bold;
-  font-size:2.5vh;
+  font-size:16px;
 }
 .rec-text{
-  font-size:2.5vh;
+  font-size:15px;
   color:#78716c;
-  line-height:1.4;
+  line-height:1.5;
 }
 </style></head>
 <body>
