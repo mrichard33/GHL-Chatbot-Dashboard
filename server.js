@@ -82,9 +82,9 @@ html,body{
 .badge{
   background:#ef4444;
   color:#fff;
-  padding:8vh 15px;
-  border-radius:25vh;
-  font-size:18vh;
+  padding:2vh 12px;
+  border-radius:10vh;
+  font-size:5vh;
   font-weight:600;
   white-space:nowrap;
 }
@@ -476,5 +476,6 @@ app.get('/health', (req, res) => res.json({ status: 'ok' }));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, '0.0.0.0', () => console.log(`Running on ${PORT}`));
+
 
 
