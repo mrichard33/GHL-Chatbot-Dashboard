@@ -13,7 +13,8 @@ app.get('/', (req, res) => {
     res.setHeader('Content-Type', 'text/html');
     res.sendFile(DASHBOARD_FILE);
   } else {
-    res.send('<h1>Waiting for data...</h1>');
+    res.setHeader('Content-Type', 'text/html');
+    res.send('<html><body><h1>Waiting for data...</h1></body></html>');
   }
 });
 
@@ -22,26 +23,19 @@ app.post('/update', (req, res) => {
   if (auth !== `Bearer ${UPDATE_SECRET}`) {
     return res.status(401).json({ error: 'Unauthorized' });
   }
-  fs.writeFileSync(DASHBOARD_FILE, req.body);
-  res.json({ success: true });
+  try {
+    fs.writeFileSync(DASHBOARD_FILE, req.body);
+    res.json({ success: true, timestamp: new Date().toISOString() });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 });
 
-app.get('/health', (req, res) => res.json({ status: 'ok' }));
+app.get('/health', (req, res) => {
+  res.json({ status: 'ok', time: new Date().toISOString() });
+});
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, '0.0.0.0', () => console.log(`Running on ${PORT}`));
-```
-
----
-
-## UPLOAD NODE (same as before)
-```
-Method: POST
-URL: https://ghl-chatbot-dashboard-production.up.railway.app/update
-
-Headers:
-  Content-Type: text/html
-  Authorization: Bearer reece-dash-2026
-
-Body Type: Raw
-Body: {{ $json.html_content }}
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server running on port ${PORT}`);
+});
