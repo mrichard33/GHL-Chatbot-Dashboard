@@ -3,20 +3,31 @@ const fs = require('fs');
 const path = require('path');
 
 const app = express();
+
+// Parse text/html body
 app.use(express.text({ type: 'text/html', limit: '5mb' }));
-app.use(express.json());
 
 const DASHBOARD_FILE = path.join(__dirname, 'dashboard.html');
-const UPDATE_SECRET = process.env.UPDATE_SECRET || 'your-secret-key-here';
+const UPDATE_SECRET = process.env.UPDATE_SECRET || 'reece-dash-2026';
 
-// Serve the dashboard
+// Root - serve dashboard
 app.get('/', (req, res) => {
-  if (fs.existsSync(DASHBOARD_FILE)) {
-    res.setHeader('Content-Type', 'text/html');
-    res.sendFile(DASHBOARD_FILE);
-  } else {
-    res.send('<h1>Dashboard not yet generated</h1><p>Waiting for first data update...</p>');
+  try {
+    if (fs.existsSync(DASHBOARD_FILE)) {
+      res.setHeader('Content-Type', 'text/html');
+      res.sendFile(DASHBOARD_FILE);
+    } else {
+      res.setHeader('Content-Type', 'text/html');
+      res.send('<html><body><h1>Dashboard Ready</h1><p>Waiting for first data update from n8n...</p></body></html>');
+    }
+  } catch (err) {
+    res.status(500).send('Error: ' + err.message);
   }
+});
+
+// Health check
+app.get('/health', (req, res) => {
+  res.json({ status: 'ok', time: new Date().toISOString() });
 });
 
 // Update endpoint for n8n
@@ -28,20 +39,14 @@ app.post('/update', (req, res) => {
   }
 
   try {
-    const htmlContent = req.body;
-    fs.writeFileSync(DASHBOARD_FILE, htmlContent);
-    res.json({ success: true, message: 'Dashboard updated', timestamp: new Date().toISOString() });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
+    fs.writeFileSync(DASHBOARD_FILE, req.body);
+    res.json({ success: true, timestamp: new Date().toISOString() });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
 });
 
-// Health check
-app.get('/health', (req, res) => {
-  res.json({ status: 'ok' });
-});
-
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Dashboard server running on port ${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server running on port ${PORT}`);
 });
