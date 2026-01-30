@@ -9,7 +9,6 @@ app.use(express.text({ type: 'text/html', limit: '5mb' }));
 const DATA_FILE = path.join(__dirname, 'dashboard-data.json');
 const UPDATE_SECRET = process.env.UPDATE_SECRET || 'reece-dash-2026';
 
-// Store JSON data
 app.post('/update', (req, res) => {
   const auth = req.headers['authorization'];
   if (auth !== `Bearer ${UPDATE_SECRET}`) {
@@ -36,7 +35,6 @@ const getData = () => {
   return null;
 };
 
-// Base modern styles
 const baseStyles = `
   *{margin:0;padding:0;box-sizing:border-box}
   html,body{
@@ -57,42 +55,42 @@ app.get('/header', (req, res) => {
 ${baseStyles}
 .header{
   background:linear-gradient(135deg,#111827 0%,#1f2937 100%);
-  border-radius:12px;
-  padding:20px 28px;
+  border-radius:max(8px,0.8vw);
+  padding:max(8px,1vw) max(12px,1.5vw);
   display:flex;
   justify-content:space-between;
   align-items:center;
   height:100%;
-  box-shadow:0 4px 6px -1px rgba(0,0,0,0.1),0 2px 4px -1px rgba(0,0,0,0.06);
+  box-shadow:0 4px 6px -1px rgba(0,0,0,0.1);
 }
-.header-left{display:flex;align-items:center;gap:16px}
+.header-left{display:flex;align-items:center;gap:max(8px,1vw)}
 .icon{
-  width:48px;height:48px;
+  width:max(32px,3.5vw);
+  height:max(32px,3.5vw);
   background:rgba(239,68,68,0.15);
-  border-radius:12px;
+  border-radius:max(6px,0.6vw);
   display:flex;align-items:center;justify-content:center;
-  font-size:24px;
+  font-size:max(16px,2vw);
 }
 .header-title{
-  font-size:22px;
+  font-size:max(16px,2.2vw);
   font-weight:700;
   color:#fff;
   letter-spacing:-0.5px;
 }
 .header-period{
-  font-size:13px;
+  font-size:max(10px,1.1vw);
   color:#9ca3af;
-  margin-top:4px;
+  margin-top:max(2px,0.2vw);
   font-weight:500;
 }
 .badge{
   background:rgba(239,68,68,0.9);
   color:#fff;
-  padding:8px 16px;
-  border-radius:20px;
-  font-size:12px;
+  padding:max(4px,0.5vw) max(8px,1vw);
+  border-radius:max(12px,1.2vw);
+  font-size:max(9px,1vw);
   font-weight:600;
-  letter-spacing:0.3px;
 }
 </style></head>
 <body>
@@ -126,44 +124,41 @@ app.get('/abandon-rate', (req, res) => {
 ${baseStyles}
 .card{
   background:#fff;
-  border-radius:12px;
-  padding:24px;
+  border-radius:max(8px,0.8vw);
+  padding:max(10px,1.2vw) max(12px,1.5vw);
   height:100%;
   display:flex;
   flex-direction:column;
-  justify-content:space-between;
   box-shadow:0 1px 3px rgba(0,0,0,0.05);
   border:1px solid #f3f4f6;
 }
 .card-header{
   display:flex;
   justify-content:space-between;
-  align-items:flex-start;
+  align-items:center;
+  flex-shrink:0;
 }
 .card-title{
-  font-size:14px;
+  font-size:max(12px,1.4vw);
   font-weight:600;
   color:#6b7280;
-  letter-spacing:0.3px;
 }
 .status-badge{
   background:${statusBg};
   color:${statusColor};
-  font-size:11px;
+  font-size:max(9px,1vw);
   font-weight:600;
-  padding:4px 10px;
-  border-radius:12px;
+  padding:max(3px,0.4vw) max(8px,0.9vw);
+  border-radius:max(8px,0.8vw);
 }
 .card-body{
   flex:1;
   display:flex;
-  flex-direction:column;
   justify-content:center;
   align-items:center;
-  padding:16px 0;
 }
 .value{
-  font-size:72px;
+  font-size:max(48px,8vw);
   font-weight:700;
   color:#111827;
   line-height:1;
@@ -172,14 +167,15 @@ ${baseStyles}
 .card-footer{
   display:flex;
   align-items:center;
-  gap:8px;
+  gap:max(4px,0.5vw);
+  flex-shrink:0;
 }
 .target-label{
-  font-size:12px;
+  font-size:max(10px,1.1vw);
   color:#9ca3af;
 }
 .target-value{
-  font-size:12px;
+  font-size:max(10px,1.1vw);
   color:${statusColor};
   font-weight:600;
 }
@@ -218,44 +214,41 @@ app.get('/full-funnel', (req, res) => {
 ${baseStyles}
 .card{
   background:#fff;
-  border-radius:12px;
-  padding:24px;
+  border-radius:max(8px,0.8vw);
+  padding:max(10px,1.2vw) max(12px,1.5vw);
   height:100%;
   display:flex;
   flex-direction:column;
-  justify-content:space-between;
   box-shadow:0 1px 3px rgba(0,0,0,0.05);
   border:1px solid #f3f4f6;
 }
 .card-header{
   display:flex;
   justify-content:space-between;
-  align-items:flex-start;
+  align-items:center;
+  flex-shrink:0;
 }
 .card-title{
-  font-size:14px;
+  font-size:max(12px,1.4vw);
   font-weight:600;
   color:#6b7280;
-  letter-spacing:0.3px;
 }
 .status-badge{
   background:${statusBg};
   color:${statusColor};
-  font-size:11px;
+  font-size:max(9px,1vw);
   font-weight:600;
-  padding:4px 10px;
-  border-radius:12px;
+  padding:max(3px,0.4vw) max(8px,0.9vw);
+  border-radius:max(8px,0.8vw);
 }
 .card-body{
   flex:1;
   display:flex;
-  flex-direction:column;
   justify-content:center;
   align-items:center;
-  padding:16px 0;
 }
 .value{
-  font-size:72px;
+  font-size:max(48px,8vw);
   font-weight:700;
   color:#111827;
   line-height:1;
@@ -264,14 +257,15 @@ ${baseStyles}
 .card-footer{
   display:flex;
   align-items:center;
-  gap:8px;
+  gap:max(4px,0.5vw);
+  flex-shrink:0;
 }
 .target-label{
-  font-size:12px;
+  font-size:max(10px,1.1vw);
   color:#9ca3af;
 }
 .target-value{
-  font-size:12px;
+  font-size:max(10px,1.1vw);
   color:${statusColor};
   font-weight:600;
 }
@@ -295,7 +289,7 @@ ${baseStyles}
   res.send(html);
 });
 
-// ============ INSIGHTS PANEL (Funnel + Objections + Recommendations) ============
+// ============ INSIGHTS PANEL ============
 app.get('/insights', (req, res) => {
   const data = getData();
   if (!data) return res.send('<div style="padding:20px;color:#888;">Waiting for data...</div>');
@@ -352,22 +346,22 @@ ${baseStyles}
 body{background:#f9fafb}
 .container{
   height:100%;
-  padding:16px;
+  padding:max(6px,0.8vw);
   display:flex;
   flex-direction:column;
-  gap:16px;
+  gap:max(6px,0.8vw);
 }
 .panels{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:16px;
+  gap:max(6px,0.8vw);
   flex:1;
   min-height:0;
 }
 .panel{
   background:#fff;
-  border-radius:12px;
-  padding:20px 24px;
+  border-radius:max(8px,0.8vw);
+  padding:max(10px,1.2vw) max(12px,1.5vw);
   box-shadow:0 1px 3px rgba(0,0,0,0.05);
   border:1px solid #f3f4f6;
   display:flex;
@@ -376,21 +370,23 @@ body{background:#f9fafb}
 .panel-header{
   display:flex;
   align-items:center;
-  gap:10px;
-  margin-bottom:16px;
-  padding-bottom:12px;
+  gap:max(6px,0.7vw);
+  margin-bottom:max(8px,1vw);
+  padding-bottom:max(6px,0.8vw);
   border-bottom:1px solid #f3f4f6;
+  flex-shrink:0;
 }
 .panel-icon{
-  width:32px;height:32px;
-  border-radius:8px;
+  width:max(24px,2.5vw);
+  height:max(24px,2.5vw);
+  border-radius:max(5px,0.5vw);
   display:flex;align-items:center;justify-content:center;
-  font-size:16px;
+  font-size:max(12px,1.4vw);
 }
 .panel-icon.funnel{background:rgba(59,130,246,0.1)}
 .panel-icon.obj{background:rgba(239,68,68,0.1)}
 .panel-title{
-  font-size:14px;
+  font-size:max(12px,1.4vw);
   font-weight:600;
   color:#111827;
 }
@@ -399,89 +395,86 @@ body{background:#f9fafb}
   display:flex;
   flex-direction:column;
   justify-content:space-around;
+  min-height:0;
 }
 .funnel-row{
   display:flex;
   align-items:center;
-  padding:12px 0;
+  padding:max(6px,0.8vw) 0;
 }
 .funnel-label{
-  width:140px;
-  font-size:13px;
+  width:max(100px,12vw);
+  font-size:max(11px,1.3vw);
   color:#6b7280;
   font-weight:500;
 }
 .funnel-bar-wrap{
   flex:1;
-  height:8px;
+  height:max(6px,0.8vw);
   background:#f3f4f6;
-  border-radius:4px;
-  margin:0 16px;
+  border-radius:max(3px,0.4vw);
+  margin:0 max(8px,1vw);
   overflow:hidden;
 }
 .funnel-bar{
   height:100%;
   background:linear-gradient(90deg,#3b82f6,#60a5fa);
-  border-radius:4px;
-  transition:width 0.5s ease;
+  border-radius:max(3px,0.4vw);
 }
 .funnel-rate{
-  font-size:16px;
+  font-size:max(14px,1.8vw);
   font-weight:700;
   color:#111827;
-  min-width:60px;
+  min-width:max(45px,5.5vw);
   text-align:right;
 }
 .obj-row{
   display:flex;
   align-items:center;
-  padding:8px 0;
+  padding:max(4px,0.6vw) 0;
 }
 .obj-label{
-  width:80px;
-  font-size:13px;
+  width:max(60px,7vw);
+  font-size:max(11px,1.3vw);
   color:#6b7280;
   font-weight:500;
 }
 .obj-bar-wrap{
   flex:1;
-  height:8px;
+  height:max(6px,0.8vw);
   background:#f3f4f6;
-  border-radius:4px;
-  margin:0 12px;
+  border-radius:max(3px,0.4vw);
+  margin:0 max(6px,0.8vw);
   overflow:hidden;
 }
 .obj-bar{
   height:100%;
   background:#d1d5db;
-  border-radius:4px;
-  transition:width 0.5s ease;
+  border-radius:max(3px,0.4vw);
 }
 .obj-count{
-  font-size:14px;
+  font-size:max(12px,1.5vw);
   font-weight:600;
   color:#111827;
-  min-width:28px;
+  min-width:max(20px,2.5vw);
   text-align:right;
 }
 .recs-panel{
   background:linear-gradient(135deg,#fffbeb 0%,#fef3c7 100%);
-  border-radius:12px;
-  padding:16px 20px;
-  border-left:4px solid #f59e0b;
+  border-radius:max(8px,0.8vw);
+  padding:max(8px,1vw) max(12px,1.4vw);
+  border-left:max(3px,0.4vw) solid #f59e0b;
   flex-shrink:0;
 }
 .recs-header{
   display:flex;
   align-items:center;
-  gap:8px;
-  margin-bottom:12px;
+  gap:max(5px,0.6vw);
+  margin-bottom:max(6px,0.8vw);
 }
-.recs-icon{
-  font-size:14px;
-}
+.recs-icon{font-size:max(11px,1.3vw)}
 .recs-title{
-  font-size:12px;
+  font-size:max(10px,1.2vw);
   font-weight:700;
   color:#92400e;
   text-transform:uppercase;
@@ -490,16 +483,16 @@ body{background:#f9fafb}
 .rec-item{
   display:flex;
   align-items:flex-start;
-  gap:10px;
-  padding:6px 0;
+  gap:max(6px,0.8vw);
+  padding:max(3px,0.4vw) 0;
 }
 .rec-icon{
   color:#ef4444;
   font-weight:bold;
-  font-size:14px;
+  font-size:max(11px,1.3vw);
 }
 .rec-text{
-  font-size:13px;
+  font-size:max(11px,1.3vw);
   color:#78716c;
   line-height:1.4;
 }
@@ -539,7 +532,6 @@ body{background:#f9fafb}
   res.send(html);
 });
 
-// ============ STATUS PAGE ============
 app.get('/', (req, res) => {
   const data = getData();
   res.send(`<!DOCTYPE html>
@@ -547,17 +539,17 @@ app.get('/', (req, res) => {
 <body style="font-family:sans-serif;padding:40px;background:#f9fafb;">
   <h1>✅ Chatbot Dashboard API</h1>
   <p>Last updated: ${data ? data.calculated_at : 'Never'}</p>
-  <h3>Available Widgets:</h3>
+  <h3>Widgets:</h3>
   <ul>
-    <li><a href="/header">/header</a> — Header with date range</li>
-    <li><a href="/abandon-rate">/abandon-rate</a> — Abandon Rate metric</li>
-    <li><a href="/full-funnel">/full-funnel</a> — Full Funnel Conversion metric</li>
-    <li><a href="/insights">/insights</a> — Funnel + Objections + Recommendations</li>
+    <li><a href="/header">/header</a></li>
+    <li><a href="/abandon-rate">/abandon-rate</a></li>
+    <li><a href="/full-funnel">/full-funnel</a></li>
+    <li><a href="/insights">/insights</a></li>
   </ul>
 </body></html>`);
 });
 
-app.get('/health', (req, res) => res.json({ status: 'ok', time: new Date().toISOString() }));
+app.get('/health', (req, res) => res.json({ status: 'ok' }));
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, '0.0.0.0', () => console.log(`Server running on port ${PORT}`));
+app.listen(PORT, '0.0.0.0', () => console.log(`Running on ${PORT}`));
