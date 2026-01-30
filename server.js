@@ -35,61 +35,51 @@ const getData = () => {
   return null;
 };
 
-const baseStyles = `
-  *{margin:0;padding:0;box-sizing:border-box}
-  html,body{
-    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
-    background:transparent;
-    height:100%;
-    overflow:hidden;
-  }
-`;
-
 // ============ HEADER WIDGET ============
 app.get('/header', (req, res) => {
   const data = getData();
-  if (!data) return res.send('<div style="padding:2vw;color:#888;">Waiting for data...</div>');
+  if (!data) return res.send('<div>Waiting...</div>');
 
   const html = `<!DOCTYPE html>
 <html><head><meta charset="UTF-8"><style>
-${baseStyles}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden;background:transparent}
 .header{
   background:linear-gradient(135deg,#111827 0%,#1f2937 100%);
-  border-radius:0.8vw;
-  padding:1.2vh 1.5vw;
+  border-radius:8px;
+  padding:12px 20px;
   display:flex;
   justify-content:space-between;
   align-items:center;
   height:100%;
-  box-shadow:0 4px 6px -1px rgba(0,0,0,0.1);
 }
-.header-left{display:flex;align-items:center;gap:1vw}
+.header-left{display:flex;align-items:center;gap:12px}
 .icon{
-  width:4vw;
-  height:4vw;
+  width:40px;height:40px;
   background:rgba(239,68,68,0.15);
-  border-radius:0.6vw;
+  border-radius:8px;
   display:flex;align-items:center;justify-content:center;
-  font-size:2.2vw;
+  font-size:20px;
 }
 .header-title{
-  font-size:2.4vw;
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  font-size:22px;
   font-weight:700;
   color:#fff;
-  letter-spacing:-0.5px;
 }
 .header-period{
-  font-size:1.2vw;
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  font-size:13px;
   color:#9ca3af;
-  margin-top:0.3vh;
-  font-weight:500;
+  margin-top:2px;
 }
 .badge{
-  background:rgba(239,68,68,0.9);
+  background:#ef4444;
   color:#fff;
-  padding:0.6vh 1.2vw;
-  border-radius:1.5vw;
-  font-size:1.1vw;
+  padding:6px 14px;
+  border-radius:16px;
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  font-size:12px;
   font-weight:600;
 }
 </style></head>
@@ -109,47 +99,49 @@ ${baseStyles}
   res.send(html);
 });
 
-// ============ ABANDON RATE WIDGET ============
+// ============ ABANDON RATE - GHL NATIVE STYLE ============
 app.get('/abandon-rate', (req, res) => {
   const data = getData();
-  if (!data) return res.send('<div style="padding:2vw;color:#888;">Waiting for data...</div>');
+  if (!data) return res.send('<div>Waiting...</div>');
 
   const rate = parseFloat(data.abandonment_rate) || 0;
   const statusColor = rate <= 20 ? '#10b981' : rate >= 40 ? '#ef4444' : '#f59e0b';
-  const statusBg = rate <= 20 ? 'rgba(16,185,129,0.1)' : rate >= 40 ? 'rgba(239,68,68,0.1)' : 'rgba(245,158,11,0.1)';
   const statusText = rate <= 20 ? 'Good' : rate >= 40 ? 'Needs Attention' : 'Monitor';
 
   const html = `<!DOCTYPE html>
 <html><head><meta charset="UTF-8"><style>
-${baseStyles}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden;background:transparent}
 .card{
   background:#fff;
-  border-radius:0.8vw;
-  padding:1.5vh 1.5vw;
+  border-radius:8px;
   height:100%;
   display:flex;
   flex-direction:column;
-  box-shadow:0 1px 3px rgba(0,0,0,0.05);
-  border:1px solid #f3f4f6;
+  border:1px solid #e5e7eb;
+  border-top:3px solid #14b8a6;
+  overflow:hidden;
 }
 .card-header{
+  padding:12px 16px 0 16px;
   display:flex;
   justify-content:space-between;
-  align-items:center;
-  flex-shrink:0;
+  align-items:flex-start;
 }
 .card-title{
-  font-size:1.8vw;
-  font-weight:600;
-  color:#374151;
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  font-size:14px;
+  font-weight:500;
+  color:#111827;
 }
 .status-badge{
-  background:${statusBg};
+  background:${statusColor}15;
   color:${statusColor};
-  font-size:1.1vw;
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  font-size:10px;
   font-weight:600;
-  padding:0.5vh 1vw;
-  border-radius:1vw;
+  padding:3px 8px;
+  border-radius:10px;
 }
 .card-body{
   flex:1;
@@ -158,26 +150,22 @@ ${baseStyles}
   align-items:center;
 }
 .value{
-  font-size:10vw;
-  font-weight:700;
-  color:#111827;
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  font-size:72px;
+  font-weight:600;
+  color:#1e3a5f;
   line-height:1;
-  letter-spacing:-0.15vw;
 }
 .card-footer{
+  padding:0 16px 12px 16px;
   display:flex;
   align-items:center;
-  gap:0.5vw;
-  flex-shrink:0;
+  gap:4px;
 }
-.target-label{
-  font-size:1.2vw;
-  color:#9ca3af;
-}
-.target-value{
-  font-size:1.2vw;
+.target{
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  font-size:12px;
   color:${statusColor};
-  font-weight:600;
 }
 </style></head>
 <body>
@@ -190,8 +178,7 @@ ${baseStyles}
     <div class="value">${data.abandonment_rate}</div>
   </div>
   <div class="card-footer">
-    <span class="target-label">Target:</span>
-    <span class="target-value">&lt;40%</span>
+    <span class="target">Target: &lt;40%</span>
   </div>
 </div>
 </body></html>`;
@@ -199,47 +186,49 @@ ${baseStyles}
   res.send(html);
 });
 
-// ============ FULL FUNNEL WIDGET ============
+// ============ FULL FUNNEL - GHL NATIVE STYLE ============
 app.get('/full-funnel', (req, res) => {
   const data = getData();
-  if (!data) return res.send('<div style="padding:2vw;color:#888;">Waiting for data...</div>');
+  if (!data) return res.send('<div>Waiting...</div>');
 
   const rate = parseFloat(data.full_funnel_conversion) || 0;
   const statusColor = rate >= 15 ? '#10b981' : rate <= 5 ? '#ef4444' : '#f59e0b';
-  const statusBg = rate >= 15 ? 'rgba(16,185,129,0.1)' : rate <= 5 ? 'rgba(239,68,68,0.1)' : 'rgba(245,158,11,0.1)';
   const statusText = rate >= 15 ? 'On Track' : rate <= 5 ? 'Needs Attention' : 'Monitor';
 
   const html = `<!DOCTYPE html>
 <html><head><meta charset="UTF-8"><style>
-${baseStyles}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden;background:transparent}
 .card{
   background:#fff;
-  border-radius:0.8vw;
-  padding:1.5vh 1.5vw;
+  border-radius:8px;
   height:100%;
   display:flex;
   flex-direction:column;
-  box-shadow:0 1px 3px rgba(0,0,0,0.05);
-  border:1px solid #f3f4f6;
+  border:1px solid #e5e7eb;
+  border-top:3px solid #14b8a6;
+  overflow:hidden;
 }
 .card-header{
+  padding:12px 16px 0 16px;
   display:flex;
   justify-content:space-between;
-  align-items:center;
-  flex-shrink:0;
+  align-items:flex-start;
 }
 .card-title{
-  font-size:1.8vw;
-  font-weight:600;
-  color:#374151;
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  font-size:14px;
+  font-weight:500;
+  color:#111827;
 }
 .status-badge{
-  background:${statusBg};
+  background:${statusColor}15;
   color:${statusColor};
-  font-size:1.1vw;
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  font-size:10px;
   font-weight:600;
-  padding:0.5vh 1vw;
-  border-radius:1vw;
+  padding:3px 8px;
+  border-radius:10px;
 }
 .card-body{
   flex:1;
@@ -248,26 +237,22 @@ ${baseStyles}
   align-items:center;
 }
 .value{
-  font-size:10vw;
-  font-weight:700;
-  color:#111827;
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  font-size:72px;
+  font-weight:600;
+  color:#1e3a5f;
   line-height:1;
-  letter-spacing:-0.15vw;
 }
 .card-footer{
+  padding:0 16px 12px 16px;
   display:flex;
   align-items:center;
-  gap:0.5vw;
-  flex-shrink:0;
+  gap:4px;
 }
-.target-label{
-  font-size:1.2vw;
-  color:#9ca3af;
-}
-.target-value{
-  font-size:1.2vw;
+.target{
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  font-size:12px;
   color:${statusColor};
-  font-weight:600;
 }
 </style></head>
 <body>
@@ -280,8 +265,7 @@ ${baseStyles}
     <div class="value">${data.full_funnel_conversion}</div>
   </div>
   <div class="card-footer">
-    <span class="target-label">Target:</span>
-    <span class="target-value">&gt;15%</span>
+    <span class="target">Target: &gt;15%</span>
   </div>
 </div>
 </body></html>`;
@@ -292,7 +276,7 @@ ${baseStyles}
 // ============ INSIGHTS PANEL ============
 app.get('/insights', (req, res) => {
   const data = getData();
-  if (!data) return res.send('<div style="padding:2vw;color:#888;">Waiting for data...</div>');
+  if (!data) return res.send('<div>Waiting...</div>');
 
   const objections = [
     { name: 'Timing', count: data.objection_timing || 0 },
@@ -319,8 +303,8 @@ app.get('/insights', (req, res) => {
 
   const recsHtml = data.recommendations.map(r => `
     <div class="rec-item">
-      <div class="rec-icon">→</div>
-      <div class="rec-text">${r}</div>
+      <span class="rec-icon">→</span>
+      <span class="rec-text">${r}</span>
     </div>
   `).join('');
 
@@ -342,158 +326,141 @@ app.get('/insights', (req, res) => {
 
   const html = `<!DOCTYPE html>
 <html><head><meta charset="UTF-8"><style>
-${baseStyles}
-body{background:#f9fafb}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  height:100%;
+  overflow:hidden;
+  background:#f9fafb;
+}
 .container{
   height:100%;
-  padding:0.8vw;
+  padding:8px;
   display:flex;
   flex-direction:column;
-  gap:0.8vw;
+  gap:8px;
 }
 .panels{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:0.8vw;
+  gap:8px;
   flex:1;
   min-height:0;
 }
 .panel{
   background:#fff;
-  border-radius:0.8vw;
-  padding:1.2vw 1.5vw;
-  box-shadow:0 1px 3px rgba(0,0,0,0.05);
-  border:1px solid #f3f4f6;
+  border-radius:8px;
+  border:1px solid #e5e7eb;
+  border-top:3px solid #14b8a6;
+  padding:12px 16px;
   display:flex;
   flex-direction:column;
   overflow:hidden;
 }
-.panel-header{
+.panel-title{
+  font-size:14px;
+  font-weight:500;
+  color:#111827;
+  margin-bottom:12px;
   display:flex;
   align-items:center;
-  gap:0.8vw;
-  margin-bottom:1vw;
-  padding-bottom:0.8vw;
-  border-bottom:1px solid #f3f4f6;
-  flex-shrink:0;
-}
-.panel-icon{
-  width:2.8vw;
-  height:2.8vw;
-  border-radius:0.5vw;
-  display:flex;align-items:center;justify-content:center;
-  font-size:1.5vw;
-}
-.panel-icon.funnel{background:rgba(59,130,246,0.1)}
-.panel-icon.obj{background:rgba(239,68,68,0.1)}
-.panel-title{
-  font-size:1.5vw;
-  font-weight:600;
-  color:#111827;
+  gap:8px;
 }
 .panel-content{
   flex:1;
   display:flex;
   flex-direction:column;
   justify-content:space-around;
-  min-height:0;
 }
 .funnel-row{
   display:flex;
   align-items:center;
-  padding:0.8vw 0;
+  padding:8px 0;
 }
 .funnel-label{
-  width:12vw;
-  font-size:1.3vw;
+  width:130px;
+  font-size:13px;
   color:#6b7280;
-  font-weight:500;
 }
 .funnel-bar-wrap{
   flex:1;
-  height:0.9vw;
+  height:8px;
   background:#f3f4f6;
-  border-radius:0.5vw;
-  margin:0 1vw;
+  border-radius:4px;
+  margin:0 12px;
   overflow:hidden;
 }
 .funnel-bar{
   height:100%;
   background:linear-gradient(90deg,#3b82f6,#60a5fa);
-  border-radius:0.5vw;
+  border-radius:4px;
 }
 .funnel-rate{
-  font-size:2vw;
+  font-size:16px;
   font-weight:700;
   color:#111827;
-  min-width:6vw;
+  min-width:55px;
   text-align:right;
 }
 .obj-row{
   display:flex;
   align-items:center;
-  padding:0.6vw 0;
+  padding:6px 0;
 }
 .obj-label{
-  width:7vw;
-  font-size:1.3vw;
+  width:75px;
+  font-size:13px;
   color:#6b7280;
-  font-weight:500;
 }
 .obj-bar-wrap{
   flex:1;
-  height:0.9vw;
+  height:8px;
   background:#f3f4f6;
-  border-radius:0.5vw;
-  margin:0 0.8vw;
+  border-radius:4px;
+  margin:0 10px;
   overflow:hidden;
 }
 .obj-bar{
   height:100%;
   background:#d1d5db;
-  border-radius:0.5vw;
+  border-radius:4px;
 }
 .obj-count{
-  font-size:1.6vw;
+  font-size:14px;
   font-weight:600;
   color:#111827;
-  min-width:2.5vw;
+  min-width:24px;
   text-align:right;
 }
 .recs-panel{
-  background:linear-gradient(135deg,#fffbeb 0%,#fef3c7 100%);
-  border-radius:0.8vw;
-  padding:1vw 1.4vw;
-  border-left:0.4vw solid #f59e0b;
-  flex-shrink:0;
+  background:#fffbeb;
+  border-radius:8px;
+  padding:10px 14px;
+  border-left:4px solid #f59e0b;
 }
-.recs-header{
-  display:flex;
-  align-items:center;
-  gap:0.6vw;
-  margin-bottom:0.8vw;
-}
-.recs-icon{font-size:1.3vw}
 .recs-title{
-  font-size:1.2vw;
+  font-size:11px;
   font-weight:700;
   color:#92400e;
   text-transform:uppercase;
-  letter-spacing:0.5px;
+  margin-bottom:8px;
+  display:flex;
+  align-items:center;
+  gap:6px;
 }
 .rec-item{
   display:flex;
   align-items:flex-start;
-  gap:0.8vw;
-  padding:0.4vw 0;
+  gap:8px;
+  padding:4px 0;
 }
 .rec-icon{
   color:#ef4444;
   font-weight:bold;
-  font-size:1.3vw;
+  font-size:13px;
 }
 .rec-text{
-  font-size:1.3vw;
+  font-size:13px;
   color:#78716c;
   line-height:1.4;
 }
@@ -502,29 +469,20 @@ body{background:#f9fafb}
 <div class="container">
   <div class="panels">
     <div class="panel">
-      <div class="panel-header">
-        <div class="panel-icon funnel">📊</div>
-        <div class="panel-title">Funnel Breakdown</div>
-      </div>
+      <div class="panel-title">📊 Funnel Breakdown</div>
       <div class="panel-content">
         ${funnelRowsHtml}
       </div>
     </div>
     <div class="panel">
-      <div class="panel-header">
-        <div class="panel-icon obj">🚧</div>
-        <div class="panel-title">Objections Breakdown</div>
-      </div>
+      <div class="panel-title">🚧 Objections Breakdown</div>
       <div class="panel-content">
         ${objectionRowsHtml}
       </div>
     </div>
   </div>
   <div class="recs-panel">
-    <div class="recs-header">
-      <span class="recs-icon">⚡</span>
-      <span class="recs-title">Recommended Actions</span>
-    </div>
+    <div class="recs-title">⚡ Recommended Actions</div>
     ${recsHtml}
   </div>
 </div>
@@ -535,19 +493,9 @@ body{background:#f9fafb}
 
 app.get('/', (req, res) => {
   const data = getData();
-  res.send(`<!DOCTYPE html>
-<html><head><title>Dashboard API</title></head>
-<body style="font-family:sans-serif;padding:40px;background:#f9fafb;">
-  <h1>✅ Chatbot Dashboard API</h1>
-  <p>Last updated: ${data ? data.calculated_at : 'Never'}</p>
-  <h3>Widgets:</h3>
-  <ul>
-    <li><a href="/header">/header</a></li>
-    <li><a href="/abandon-rate">/abandon-rate</a></li>
-    <li><a href="/full-funnel">/full-funnel</a></li>
-    <li><a href="/insights">/insights</a></li>
-  </ul>
-</body></html>`);
+  res.send(`<h1>Dashboard API</h1><p>Updated: ${data ? data.calculated_at : 'Never'}</p>
+  <ul><li><a href="/header">/header</a></li><li><a href="/abandon-rate">/abandon-rate</a></li>
+  <li><a href="/full-funnel">/full-funnel</a></li><li><a href="/insights">/insights</a></li></ul>`);
 });
 
 app.get('/health', (req, res) => res.json({ status: 'ok' }));
