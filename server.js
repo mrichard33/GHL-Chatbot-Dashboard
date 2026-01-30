@@ -48,48 +48,48 @@ const baseStyles = `
 // ============ HEADER WIDGET ============
 app.get('/header', (req, res) => {
   const data = getData();
-  if (!data) return res.send('<div style="padding:20px;color:#888;">Waiting for data...</div>');
+  if (!data) return res.send('<div style="padding:2vw;color:#888;">Waiting for data...</div>');
 
   const html = `<!DOCTYPE html>
 <html><head><meta charset="UTF-8"><style>
 ${baseStyles}
 .header{
   background:linear-gradient(135deg,#111827 0%,#1f2937 100%);
-  border-radius:max(8px,0.8vw);
-  padding:max(8px,1vw) max(12px,1.5vw);
+  border-radius:0.8vw;
+  padding:1.2vh 1.5vw;
   display:flex;
   justify-content:space-between;
   align-items:center;
   height:100%;
   box-shadow:0 4px 6px -1px rgba(0,0,0,0.1);
 }
-.header-left{display:flex;align-items:center;gap:max(8px,1vw)}
+.header-left{display:flex;align-items:center;gap:1vw}
 .icon{
-  width:max(32px,3.5vw);
-  height:max(32px,3.5vw);
+  width:4vw;
+  height:4vw;
   background:rgba(239,68,68,0.15);
-  border-radius:max(6px,0.6vw);
+  border-radius:0.6vw;
   display:flex;align-items:center;justify-content:center;
-  font-size:max(16px,2vw);
+  font-size:2.2vw;
 }
 .header-title{
-  font-size:max(16px,2.2vw);
+  font-size:2.4vw;
   font-weight:700;
   color:#fff;
   letter-spacing:-0.5px;
 }
 .header-period{
-  font-size:max(10px,1.1vw);
+  font-size:1.2vw;
   color:#9ca3af;
-  margin-top:max(2px,0.2vw);
+  margin-top:0.3vh;
   font-weight:500;
 }
 .badge{
   background:rgba(239,68,68,0.9);
   color:#fff;
-  padding:max(4px,0.5vw) max(8px,1vw);
-  border-radius:max(12px,1.2vw);
-  font-size:max(9px,1vw);
+  padding:0.6vh 1.2vw;
+  border-radius:1.5vw;
+  font-size:1.1vw;
   font-weight:600;
 }
 </style></head>
@@ -112,7 +112,7 @@ ${baseStyles}
 // ============ ABANDON RATE WIDGET ============
 app.get('/abandon-rate', (req, res) => {
   const data = getData();
-  if (!data) return res.send('<div style="padding:20px;color:#888;">Waiting for data...</div>');
+  if (!data) return res.send('<div style="padding:2vw;color:#888;">Waiting for data...</div>');
 
   const rate = parseFloat(data.abandonment_rate) || 0;
   const statusColor = rate <= 20 ? '#10b981' : rate >= 40 ? '#ef4444' : '#f59e0b';
@@ -124,8 +124,8 @@ app.get('/abandon-rate', (req, res) => {
 ${baseStyles}
 .card{
   background:#fff;
-  border-radius:max(8px,0.8vw);
-  padding:max(10px,1.2vw) max(12px,1.5vw);
+  border-radius:0.8vw;
+  padding:1.5vh 1.5vw;
   height:100%;
   display:flex;
   flex-direction:column;
@@ -139,17 +139,17 @@ ${baseStyles}
   flex-shrink:0;
 }
 .card-title{
-  font-size:max(12px,1.4vw);
+  font-size:1.8vw;
   font-weight:600;
-  color:#6b7280;
+  color:#374151;
 }
 .status-badge{
   background:${statusBg};
   color:${statusColor};
-  font-size:max(9px,1vw);
+  font-size:1.1vw;
   font-weight:600;
-  padding:max(3px,0.4vw) max(8px,0.9vw);
-  border-radius:max(8px,0.8vw);
+  padding:0.5vh 1vw;
+  border-radius:1vw;
 }
 .card-body{
   flex:1;
@@ -158,24 +158,24 @@ ${baseStyles}
   align-items:center;
 }
 .value{
-  font-size:max(48px,8vw);
+  font-size:10vw;
   font-weight:700;
   color:#111827;
   line-height:1;
-  letter-spacing:-2px;
+  letter-spacing:-0.15vw;
 }
 .card-footer{
   display:flex;
   align-items:center;
-  gap:max(4px,0.5vw);
+  gap:0.5vw;
   flex-shrink:0;
 }
 .target-label{
-  font-size:max(10px,1.1vw);
+  font-size:1.2vw;
   color:#9ca3af;
 }
 .target-value{
-  font-size:max(10px,1.1vw);
+  font-size:1.2vw;
   color:${statusColor};
   font-weight:600;
 }
@@ -202,7 +202,7 @@ ${baseStyles}
 // ============ FULL FUNNEL WIDGET ============
 app.get('/full-funnel', (req, res) => {
   const data = getData();
-  if (!data) return res.send('<div style="padding:20px;color:#888;">Waiting for data...</div>');
+  if (!data) return res.send('<div style="padding:2vw;color:#888;">Waiting for data...</div>');
 
   const rate = parseFloat(data.full_funnel_conversion) || 0;
   const statusColor = rate >= 15 ? '#10b981' : rate <= 5 ? '#ef4444' : '#f59e0b';
@@ -214,8 +214,8 @@ app.get('/full-funnel', (req, res) => {
 ${baseStyles}
 .card{
   background:#fff;
-  border-radius:max(8px,0.8vw);
-  padding:max(10px,1.2vw) max(12px,1.5vw);
+  border-radius:0.8vw;
+  padding:1.5vh 1.5vw;
   height:100%;
   display:flex;
   flex-direction:column;
@@ -229,17 +229,17 @@ ${baseStyles}
   flex-shrink:0;
 }
 .card-title{
-  font-size:max(12px,1.4vw);
+  font-size:1.8vw;
   font-weight:600;
-  color:#6b7280;
+  color:#374151;
 }
 .status-badge{
   background:${statusBg};
   color:${statusColor};
-  font-size:max(9px,1vw);
+  font-size:1.1vw;
   font-weight:600;
-  padding:max(3px,0.4vw) max(8px,0.9vw);
-  border-radius:max(8px,0.8vw);
+  padding:0.5vh 1vw;
+  border-radius:1vw;
 }
 .card-body{
   flex:1;
@@ -248,24 +248,24 @@ ${baseStyles}
   align-items:center;
 }
 .value{
-  font-size:max(48px,8vw);
+  font-size:10vw;
   font-weight:700;
   color:#111827;
   line-height:1;
-  letter-spacing:-2px;
+  letter-spacing:-0.15vw;
 }
 .card-footer{
   display:flex;
   align-items:center;
-  gap:max(4px,0.5vw);
+  gap:0.5vw;
   flex-shrink:0;
 }
 .target-label{
-  font-size:max(10px,1.1vw);
+  font-size:1.2vw;
   color:#9ca3af;
 }
 .target-value{
-  font-size:max(10px,1.1vw);
+  font-size:1.2vw;
   color:${statusColor};
   font-weight:600;
 }
@@ -292,7 +292,7 @@ ${baseStyles}
 // ============ INSIGHTS PANEL ============
 app.get('/insights', (req, res) => {
   const data = getData();
-  if (!data) return res.send('<div style="padding:20px;color:#888;">Waiting for data...</div>');
+  if (!data) return res.send('<div style="padding:2vw;color:#888;">Waiting for data...</div>');
 
   const objections = [
     { name: 'Timing', count: data.objection_timing || 0 },
@@ -346,47 +346,48 @@ ${baseStyles}
 body{background:#f9fafb}
 .container{
   height:100%;
-  padding:max(6px,0.8vw);
+  padding:0.8vw;
   display:flex;
   flex-direction:column;
-  gap:max(6px,0.8vw);
+  gap:0.8vw;
 }
 .panels{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:max(6px,0.8vw);
+  gap:0.8vw;
   flex:1;
   min-height:0;
 }
 .panel{
   background:#fff;
-  border-radius:max(8px,0.8vw);
-  padding:max(10px,1.2vw) max(12px,1.5vw);
+  border-radius:0.8vw;
+  padding:1.2vw 1.5vw;
   box-shadow:0 1px 3px rgba(0,0,0,0.05);
   border:1px solid #f3f4f6;
   display:flex;
   flex-direction:column;
+  overflow:hidden;
 }
 .panel-header{
   display:flex;
   align-items:center;
-  gap:max(6px,0.7vw);
-  margin-bottom:max(8px,1vw);
-  padding-bottom:max(6px,0.8vw);
+  gap:0.8vw;
+  margin-bottom:1vw;
+  padding-bottom:0.8vw;
   border-bottom:1px solid #f3f4f6;
   flex-shrink:0;
 }
 .panel-icon{
-  width:max(24px,2.5vw);
-  height:max(24px,2.5vw);
-  border-radius:max(5px,0.5vw);
+  width:2.8vw;
+  height:2.8vw;
+  border-radius:0.5vw;
   display:flex;align-items:center;justify-content:center;
-  font-size:max(12px,1.4vw);
+  font-size:1.5vw;
 }
 .panel-icon.funnel{background:rgba(59,130,246,0.1)}
 .panel-icon.obj{background:rgba(239,68,68,0.1)}
 .panel-title{
-  font-size:max(12px,1.4vw);
+  font-size:1.5vw;
   font-weight:600;
   color:#111827;
 }
@@ -400,81 +401,81 @@ body{background:#f9fafb}
 .funnel-row{
   display:flex;
   align-items:center;
-  padding:max(6px,0.8vw) 0;
+  padding:0.8vw 0;
 }
 .funnel-label{
-  width:max(100px,12vw);
-  font-size:max(11px,1.3vw);
+  width:12vw;
+  font-size:1.3vw;
   color:#6b7280;
   font-weight:500;
 }
 .funnel-bar-wrap{
   flex:1;
-  height:max(6px,0.8vw);
+  height:0.9vw;
   background:#f3f4f6;
-  border-radius:max(3px,0.4vw);
-  margin:0 max(8px,1vw);
+  border-radius:0.5vw;
+  margin:0 1vw;
   overflow:hidden;
 }
 .funnel-bar{
   height:100%;
   background:linear-gradient(90deg,#3b82f6,#60a5fa);
-  border-radius:max(3px,0.4vw);
+  border-radius:0.5vw;
 }
 .funnel-rate{
-  font-size:max(14px,1.8vw);
+  font-size:2vw;
   font-weight:700;
   color:#111827;
-  min-width:max(45px,5.5vw);
+  min-width:6vw;
   text-align:right;
 }
 .obj-row{
   display:flex;
   align-items:center;
-  padding:max(4px,0.6vw) 0;
+  padding:0.6vw 0;
 }
 .obj-label{
-  width:max(60px,7vw);
-  font-size:max(11px,1.3vw);
+  width:7vw;
+  font-size:1.3vw;
   color:#6b7280;
   font-weight:500;
 }
 .obj-bar-wrap{
   flex:1;
-  height:max(6px,0.8vw);
+  height:0.9vw;
   background:#f3f4f6;
-  border-radius:max(3px,0.4vw);
-  margin:0 max(6px,0.8vw);
+  border-radius:0.5vw;
+  margin:0 0.8vw;
   overflow:hidden;
 }
 .obj-bar{
   height:100%;
   background:#d1d5db;
-  border-radius:max(3px,0.4vw);
+  border-radius:0.5vw;
 }
 .obj-count{
-  font-size:max(12px,1.5vw);
+  font-size:1.6vw;
   font-weight:600;
   color:#111827;
-  min-width:max(20px,2.5vw);
+  min-width:2.5vw;
   text-align:right;
 }
 .recs-panel{
   background:linear-gradient(135deg,#fffbeb 0%,#fef3c7 100%);
-  border-radius:max(8px,0.8vw);
-  padding:max(8px,1vw) max(12px,1.4vw);
-  border-left:max(3px,0.4vw) solid #f59e0b;
+  border-radius:0.8vw;
+  padding:1vw 1.4vw;
+  border-left:0.4vw solid #f59e0b;
   flex-shrink:0;
 }
 .recs-header{
   display:flex;
   align-items:center;
-  gap:max(5px,0.6vw);
-  margin-bottom:max(6px,0.8vw);
+  gap:0.6vw;
+  margin-bottom:0.8vw;
 }
-.recs-icon{font-size:max(11px,1.3vw)}
+.recs-icon{font-size:1.3vw}
 .recs-title{
-  font-size:max(10px,1.2vw);
+  font-size:1.2vw;
   font-weight:700;
   color:#92400e;
   text-transform:uppercase;
@@ -483,16 +484,16 @@ body{background:#f9fafb}
 .rec-item{
   display:flex;
   align-items:flex-start;
-  gap:max(6px,0.8vw);
-  padding:max(3px,0.4vw) 0;
+  gap:0.8vw;
+  padding:0.4vw 0;
 }
 .rec-icon{
   color:#ef4444;
   font-weight:bold;
-  font-size:max(11px,1.3vw);
+  font-size:1.3vw;
 }
 .rec-text{
-  font-size:max(11px,1.3vw);
+  font-size:1.3vw;
   color:#78716c;
   line-height:1.4;
 }
