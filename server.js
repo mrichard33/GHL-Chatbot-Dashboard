@@ -282,6 +282,7 @@ html,body{
   res.setHeader('Content-Type', 'text/html');
   res.send(html);
 });
+
 // ============ INSIGHTS PANEL ============
 app.get('/insights', (req, res) => {
   const data = getData();
@@ -318,21 +319,9 @@ app.get('/insights', (req, res) => {
   `).join('');
 
   const funnelData = [
-    { 
-      label: 'Engaged → Triggered', 
-      rate: data.engagement_to_trigger_rate,
-      description: 'Chats that escalated to hot call'
-    },
-    { 
-      label: 'Triggered → Booked', 
-      rate: data.trigger_to_booked_rate,
-      description: 'Hot calls that became appointments'
-    },
-    { 
-      label: 'Full Funnel', 
-      rate: data.full_funnel_conversion,
-      description: 'End-to-end lead conversion'
-    }
+    { label: 'Engaged → Triggered', rate: data.engagement_to_trigger_rate, description: 'Chats that escalated to hot call' },
+    { label: 'Triggered → Booked', rate: data.trigger_to_booked_rate, description: 'Hot calls that became appointments' },
+    { label: 'Full Funnel', rate: data.full_funnel_conversion, description: 'End-to-end lead conversion' }
   ];
 
   const funnelRowsHtml = funnelData.map(f => `
@@ -493,3 +482,15 @@ html,body{
   res.setHeader('Content-Type', 'text/html');
   res.send(html);
 });
+
+app.get('/', (req, res) => {
+  const data = getData();
+  res.send(`<h1>Dashboard API</h1><p>Updated: ${data ? data.calculated_at : 'Never'}</p>
+  <ul><li><a href="/header">/header</a></li><li><a href="/abandon-rate">/abandon-rate</a></li>
+  <li><a href="/full-funnel">/full-funnel</a></li><li><a href="/insights">/insights</a></li></ul>`);
+});
+
+app.get('/health', (req, res) => res.json({ status: 'ok' }));
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, '0.0.0.0', () => console.log(`Running on ${PORT}`));
