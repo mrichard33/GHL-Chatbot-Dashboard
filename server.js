@@ -62,17 +62,13 @@ html,body{
 .header{
   background:linear-gradient(135deg,#111827 0%,#1f2937 100%);
   display:flex;
-  justify-content:space-between;
-  align-items:center;
+  flex-direction:column;
+  justify-content:flex-start;
+  align-items:flex-start;
   width:100%;
   height:100%;
-  padding:0 6%;
+  padding:5% 6%;
   border-radius:8px;
-}
-.header-left{
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
 }
 .header-title{
   font-size:12vh;
@@ -80,28 +76,27 @@ html,body{
   color:#fff;
   line-height:1.1;
 }
-.header-period{
-  font-size:8vh;
-  color:#9ca3af;
-  line-height:1.3;
-}
 .badge{
   background:#ef4444;
   color:#fff;
-  padding:2vh 4%;
-  border-radius:8vh;
+  padding:1.5vh 3%;
+  border-radius:6vh;
   font-size:5vh;
   font-weight:600;
   white-space:nowrap;
+  margin-top:2vh;
+}
+.header-period{
+  font-size:5vh;
+  color:#9ca3af;
+  margin-top:2vh;
 }
 </style></head>
 <body>
 <div class="header">
-  <div class="header-left">
-    <div class="header-title">Chatbot Performance</div>
-    <div class="header-period">${mtdStart} — ${mtdEnd}</div>
-  </div>
+  <div class="header-title">Chatbot Performance</div>
   <div class="badge">Updated: ${data.calculated_at}</div>
+  <div class="header-period">${mtdStart} — ${mtdEnd}</div>
 </div>
 </body></html>`;
   res.setHeader('Content-Type', 'text/html');
@@ -479,6 +474,7 @@ app.get('/health', (req, res) => res.json({ status: 'ok' }));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, '0.0.0.0', () => console.log(`Running on ${PORT}`));
+
 
 
 
