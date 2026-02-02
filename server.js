@@ -91,7 +91,7 @@ html,body{
 <div class="header">
   <div class="header-title">Chatbot Performance</div>
   <div class="badge">Updated: ${data.calculated_at}</div>
-  <div class="header-period">All Time</div>
+  <div class="header-period">Last 31 Days</div>
 </div>
 </body></html>`;
   res.setHeader('Content-Type', 'text/html');
@@ -469,6 +469,7 @@ app.get('/health', (req, res) => res.json({ status: 'ok' }));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, '0.0.0.0', () => console.log(`Running on ${PORT}`));
+
 
 
 
