@@ -40,15 +40,6 @@ app.get('/header', (req, res) => {
   const data = getData();
   if (!data) return res.send('<div>Waiting...</div>');
 
-  // Calculate month-to-date range
-  const now = new Date();
-  const monthStart = new Date(now.getFullYear(), now.getMonth(), 1);
-  const formatDate = (d) => {
-    return `${String(d.getMonth() + 1).padStart(2, '0')}/${String(d.getDate()).padStart(2, '0')}/${d.getFullYear()}`;
-  };
-  const mtdStart = formatDate(monthStart);
-  const mtdEnd = formatDate(now);
-
   const html = `<!DOCTYPE html>
 <html><head><meta charset="UTF-8"><style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -91,7 +82,7 @@ html,body{
   text-overflow:ellipsis;
 }
 .header-period{
-  font-size:5vh;
+  font-size:4vh;
   color:#9ca3af;
   margin-top:2vh;
 }
@@ -100,7 +91,7 @@ html,body{
 <div class="header">
   <div class="header-title">Chatbot Performance</div>
   <div class="badge">Updated: ${data.calculated_at}</div>
-  <div class="header-period">${mtdStart} — ${mtdEnd}</div>
+  <div class="header-period">All Time</div>
 </div>
 </body></html>`;
   res.setHeader('Content-Type', 'text/html');
@@ -478,6 +469,7 @@ app.get('/health', (req, res) => res.json({ status: 'ok' }));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, '0.0.0.0', () => console.log(`Running on ${PORT}`));
+
 
 
 
