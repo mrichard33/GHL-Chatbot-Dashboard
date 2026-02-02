@@ -372,7 +372,7 @@ html,body{
   flex-direction:column;
 }
 .panel-title{
-  font-size:16px;
+  font-size:18px;
   font-weight:600;
   color:#111827;
   margin-bottom:16px;
@@ -494,3 +494,4 @@ app.get('/health', (req, res) => res.json({ status: 'ok' }));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, '0.0.0.0', () => console.log(`Running on ${PORT}`));
+
