@@ -67,8 +67,9 @@ html,body{
   align-items:flex-start;
   width:100%;
   height:100%;
-  padding:5% 6%;
+  padding:5% 5%;
   border-radius:8px;
+  overflow:hidden;
 }
 .header-title{
   font-size:12vh;
@@ -79,12 +80,15 @@ html,body{
 .badge{
   background:#ef4444;
   color:#fff;
-  padding:1.5vh 3%;
+  padding:1vh 2vw;
   border-radius:6vh;
-  font-size:5vh;
+  font-size:min(5vh, 3.5vw);
   font-weight:600;
   white-space:nowrap;
   margin-top:2vh;
+  max-width:95%;
+  overflow:hidden;
+  text-overflow:ellipsis;
 }
 .header-period{
   font-size:5vh;
@@ -474,6 +478,7 @@ app.get('/health', (req, res) => res.json({ status: 'ok' }));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, '0.0.0.0', () => console.log(`Running on ${PORT}`));
+
 
 
 
