@@ -36,7 +36,6 @@ const getData = () => {
 };
 
 // ============ HEADER WIDGET ============
-// ============ HEADER WIDGET ============
 app.get('/header', (req, res) => {
   const data = getData();
   if (!data) return res.send('<div>Waiting...</div>');
@@ -218,12 +217,22 @@ html,body{
 .card-header{
   display:flex;
   justify-content:space-between;
-  align-items:center;
+  align-items:flex-start;
+}
+.title-wrap{
+  display:flex;
+  flex-direction:column;
 }
 .card-title{
   font-size:4.5vw;
   font-weight:500;
   color:#111827;
+}
+.card-subtitle{
+  font-size:2.5vw;
+  font-weight:400;
+  color:#6b7280;
+  margin-top:0.5vh;
 }
 .status-badge{
   background:${statusColor}20;
@@ -256,7 +265,10 @@ html,body{
 <body>
 <div class="card">
   <div class="card-header">
-    <div class="card-title">Full Funnel Conversion <br>(Lead-to-appointment conversion rate)</div>
+    <div class="title-wrap">
+      <div class="card-title">Full Funnel Conversion</div>
+      <div class="card-subtitle">(Lead-to-appointment conversion rate)</div>
+    </div>
     <div class="status-badge">${statusText}</div>
   </div>
   <div class="card-body">
@@ -270,7 +282,6 @@ html,body{
   res.setHeader('Content-Type', 'text/html');
   res.send(html);
 });
-
 // ============ INSIGHTS PANEL ============
 app.get('/insights', (req, res) => {
   const data = getData();
@@ -470,6 +481,7 @@ app.get('/health', (req, res) => res.json({ status: 'ok' }));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, '0.0.0.0', () => console.log(`Running on ${PORT}`));
+
 
 
 
