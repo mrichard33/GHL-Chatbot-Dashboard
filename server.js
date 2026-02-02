@@ -40,6 +40,15 @@ app.get('/header', (req, res) => {
   const data = getData();
   if (!data) return res.send('<div>Waiting...</div>');
 
+  // Calculate month-to-date range
+  const now = new Date();
+  const monthStart = new Date(now.getFullYear(), now.getMonth(), 1);
+  const formatDate = (d) => {
+    return `${String(d.getMonth() + 1).padStart(2, '0')}/${String(d.getDate()).padStart(2, '0')}/${d.getFullYear()}`;
+  };
+  const mtdStart = formatDate(monthStart);
+  const mtdEnd = formatDate(now);
+
   const html = `<!DOCTYPE html>
 <html><head><meta charset="UTF-8"><style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -57,33 +66,30 @@ html,body{
   align-items:center;
   width:100%;
   height:100%;
-  padding:0 20px;
-}
-.header-left{display:flex;align-items:center;gap:12px}
-.icon{
-  height:60%;
-  aspect-ratio:1;
-  background:rgba(239,68,68,0.15);
+  padding:0 6%;
   border-radius:8px;
-  display:flex;align-items:center;justify-content:center;
-  font-size:30vh;
+}
+.header-left{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
 }
 .header-title{
-  font-size:10vh;
+  font-size:12vh;
   font-weight:700;
   color:#fff;
-  line-height:1;
+  line-height:1.1;
 }
 .header-period{
-  font-size:10vh;
+  font-size:8vh;
   color:#9ca3af;
-  line-height:1.2;
+  line-height:1.3;
 }
 .badge{
   background:#ef4444;
   color:#fff;
-  padding:2vh 12px;
-  border-radius:10vh;
+  padding:2vh 4%;
+  border-radius:8vh;
   font-size:5vh;
   font-weight:600;
   white-space:nowrap;
@@ -92,11 +98,8 @@ html,body{
 <body>
 <div class="header">
   <div class="header-left">
-    <div class="icon">🤖</div>
-    <div>
-      <div class="header-title">Chatbot Performance</div>
-      <div class="header-period">${data.week_start_date} — ${data.week_end_date}</div>
-    </div>
+    <div class="header-title">Chatbot Performance</div>
+    <div class="header-period">${mtdStart} — ${mtdEnd}</div>
   </div>
   <div class="badge">Updated: ${data.calculated_at}</div>
 </div>
@@ -476,6 +479,7 @@ app.get('/health', (req, res) => res.json({ status: 'ok' }));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, '0.0.0.0', () => console.log(`Running on ${PORT}`));
+
 
 
 
