@@ -255,7 +255,7 @@ html,body{
 <body>
 <div class="card">
   <div class="card-header">
-    <div class="card-title">Full Funnel Conversion (Lead-to-appointment conversion rate)</div>
+    <div class="card-title">Full Funnel Conversion <br>(Lead-to-appointment conversion rate)</div>
     <div class="status-badge">${statusText}</div>
   </div>
   <div class="card-body">
@@ -469,6 +469,7 @@ app.get('/health', (req, res) => res.json({ status: 'ok' }));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, '0.0.0.0', () => console.log(`Running on ${PORT}`));
+
 
 
 
