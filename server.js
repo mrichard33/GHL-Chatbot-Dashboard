@@ -318,14 +318,29 @@ app.get('/insights', (req, res) => {
   `).join('');
 
   const funnelData = [
-    { label: 'Engaged → Triggered', rate: data.engagement_to_trigger_rate },
-    { label: 'Triggered → Booked', rate: data.trigger_to_booked_rate },
-    { label: 'Full Funnel', rate: data.full_funnel_conversion }
+    { 
+      label: 'Engaged → Triggered', 
+      rate: data.engagement_to_trigger_rate,
+      description: 'Chats that escalated to hot call'
+    },
+    { 
+      label: 'Triggered → Booked', 
+      rate: data.trigger_to_booked_rate,
+      description: 'Hot calls that became appointments'
+    },
+    { 
+      label: 'Full Funnel', 
+      rate: data.full_funnel_conversion,
+      description: 'End-to-end lead conversion'
+    }
   ];
 
   const funnelRowsHtml = funnelData.map(f => `
     <div class="row">
-      <span class="label">${f.label}</span>
+      <div class="label-wrap">
+        <span class="label">${f.label}</span>
+        <span class="label-desc">${f.description}</span>
+      </div>
       <div class="bar-wrap">
         <div class="bar blue" style="width:${parseFloat(f.rate) || 0}%"></div>
       </div>
@@ -382,12 +397,21 @@ html,body{
 .row{
   display:flex;
   align-items:center;
-  padding:10px 0;
+  padding:8px 0;
+}
+.label-wrap{
+  width:180px;
+  display:flex;
+  flex-direction:column;
 }
 .label{
-  width:150px;
   font-size:15px;
   color:#6b7280;
+}
+.label-desc{
+  font-size:11px;
+  color:#9ca3af;
+  margin-top:2px;
 }
 .bar-wrap{
   flex:1;
@@ -469,28 +493,3 @@ html,body{
   res.setHeader('Content-Type', 'text/html');
   res.send(html);
 });
-
-app.get('/', (req, res) => {
-  const data = getData();
-  res.send(`<h1>Dashboard API</h1><p>Updated: ${data ? data.calculated_at : 'Never'}</p>
-  <ul><li><a href="/header">/header</a></li><li><a href="/abandon-rate">/abandon-rate</a></li>
-  <li><a href="/full-funnel">/full-funnel</a></li><li><a href="/insights">/insights</a></li></ul>`);
-});
-
-app.get('/health', (req, res) => res.json({ status: 'ok' }));
-
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, '0.0.0.0', () => console.log(`Running on ${PORT}`));
-
-
-
-
-
-
-
-
-
-
-
-
-
